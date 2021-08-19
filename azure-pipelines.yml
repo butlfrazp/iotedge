@@ -1,0 +1,21 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- '*'
+
+pool:
+  vmImage: 'ubuntu-20.04'
+  demands:
+  - npm
+
+variables:
+- group: test-variable-group
+- name: buildConfiguration
+  value: 'Release'
+
+steps:
+- bash: echo '##vso[task.setvariable variable=tag]1.0.1'
+- script: |
+      echo ${{ variables.tag }}
